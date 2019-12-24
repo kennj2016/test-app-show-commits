@@ -1,0 +1,59 @@
+:local(.layout_master) {
+    background: #ffffff !important;
+}
+
+:local(.sidebar) {
+    background: black !important;
+    border-right: 1px solid #dedede;
+    height: 100vh;
+    position: sticky !important;
+    top: 0
+}
+
+:local(.right_layout) {
+    height: 100vh;
+    background: #ffffff !important;
+
+}
+
+:local(.right_content) {
+    padding: 24px;
+    margin: 0;
+}
+
+@media screen and (max-width: 768px){
+
+    :local(.right_content) {
+        padding-bottom: 130px;
+        padding-top: 50px;
+    }
+
+
+
+
+    :local(.right_layout) {
+        height: auto;
+
+    }
+
+    .page-book-photographers :local(.right_layout){
+        height: 100vh;
+    }
+}
+
+
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) and (max-width: 768px) {
+    @media {
+        :local(.right_layout) {
+            height: 100vh;
+        }
+    }
+}
+
+@media not all and (min-resolution:.001dpcm) and (max-width: 768px) {
+    @media {
+        :local(.right_layout) {
+            height: 100vh;
+        }
+    }
+}
