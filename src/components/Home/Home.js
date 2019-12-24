@@ -43,7 +43,7 @@ class HomePage extends Component{
     }
 
     render() {
-        const  {
+        let  {
             expandkeys,
             commits ,
             authorUsername ,
@@ -58,6 +58,7 @@ class HomePage extends Component{
                 )
             })
         }
+
         return (
             <div className="home-page" style={{
                 maxWidth: 1366,
