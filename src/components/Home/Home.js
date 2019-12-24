@@ -88,6 +88,7 @@ class HomePage extends Component{
             }
         ];
 
+        console.log('test branch 2');
 
         return (
             <div className="home-page" style={{maxWidth:1366,margin:'0 auto'}}>
