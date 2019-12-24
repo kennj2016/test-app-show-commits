@@ -1,1 +1,13 @@
 @import '~antd/dist/antd.css';
+
+
+.ant-tree li .ant-tree-node-content-wrapper:hover {
+    background-color: #212425;
+}
+.commits-box{
+    background: black;
+    padding: 20px;
+}
+.commits-box,.commits-box span{
+    color: white;
+}

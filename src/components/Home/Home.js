@@ -1,3 +1,4 @@
+import JSONTree from 'react-json-tree'
 import style from './home.css'
 import React,{Component} from 'react'
 import axios from 'axios'
@@ -5,6 +6,9 @@ import {connect} from 'react-redux'
 import {convertCommitsTree} from '../../utils/helper'
 import { Row, Col,Table ,Icon,Tree} from 'antd';
 import moment from 'moment'
+import { Select } from 'antd';
+
+const { Option } = Select;
 const github_api = process.env.REACT_APP_GITHUB_API
 const { TreeNode } = Tree;
 
@@ -19,11 +23,11 @@ class HomePage extends Component{
             expandkeys : [],
             commits : [],
             authorUsername :'kennj2016',
-            repoName :'test-app-show-commits'
+            repoName :'test-app-show-commits',
+            branchs:[]
         }
 
     }
-
 
 
     componentWillMount(){
@@ -32,6 +36,18 @@ class HomePage extends Component{
             authorUsername ,
             repoName
         } = this.state
+
+
+
+        axios.get(github_api + `/repos/${authorUsername}/${repoName}/branches`).
+        then(res=>{
+
+
+            console.log(res.data);
+
+           this.setState({branchs:res.data})
+
+        })
         axios.get(github_api + `/repos/${authorUsername}/${repoName}/commits`).
         then(res=>{
 
@@ -47,7 +63,8 @@ class HomePage extends Component{
             expandkeys,
             commits ,
             authorUsername ,
-            repoName
+            repoName,
+            branchs
         } = this.state
 
         console.log({commits});
@@ -76,7 +93,12 @@ class HomePage extends Component{
                         </div>
 
 
-                        <div> Commits tree
+                        <div>
+
+
+                        </div>
+
+                        <div className={'commits-box'}> Commits (Master branch)
 
                             <Tree
                                 autoExpandParent={true}
@@ -85,13 +107,22 @@ class HomePage extends Component{
                                 switcherIcon={<Icon type="down" />}
                             >
                                 {
-
                                     getChildNode(commits)
 
                                 }
 
                             </Tree>
                         </div>
+
+                        <div>
+                            data json fetch from api
+                            <JSONTree data={expandkeys} />
+                        </div>
+                        <div>
+                            data after convert
+                            <JSONTree data={commits} />
+                        </div>
+
 
 
                     </Col>
